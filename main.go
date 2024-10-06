@@ -319,6 +319,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	go DbManager()
+
 	//http.HandleFunc("/", alternativeSolutionHandler)
 	http.HandleFunc("/deck/", deckRouter)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
