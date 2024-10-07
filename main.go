@@ -296,7 +296,7 @@ func createNewDeck(nbrPack int, includeJokers bool) string {
 }
 
 func alternativeSolutionHandler(w http.ResponseWriter, r *http.Request) {
-	url := fmt.Sprintf("https://www.deckofcardsapi.com/api/%s", r.URL.Path)
+	url := fmt.Sprintf("https://www.420c56.drynish.synology.me/%s", r.URL.Path)
 	resp, err := http.Get(url)
 	if err != nil {
 		http.Error(w, "Invalid request", http.StatusBadRequest)
