@@ -64,7 +64,7 @@ func DbManager() {
 			position := _highestPosition(req.Parameters[0].(string))
 			response = DBResponse{Result: position, Err: nil}
 		case "drawCards":
-			cards, err := drawCards(req.Parameters[0].(string), req.Parameters[1].(int))
+			cards, err := _drawCards(req.Parameters[0].(string), req.Parameters[1].(int))
 			response = DBResponse{Result: cards, Err: err}
 		case "shuffleDeck":
 			err := _shuffleDeck(req.Parameters[0].(string))
@@ -78,6 +78,7 @@ func DbManager() {
 		case "comingCards":
 			cards, err := _comingCards(req.Parameters[0].(string), req.Parameters[1].(int))
 			response = DBResponse{Result: cards, Err: err}
+
 		default:
 			response = DBResponse{Err: fmt.Errorf("unknown query type")}
 		}
@@ -228,12 +229,14 @@ func _drawCards(deckId string, count int) ([]Card, error) {
 }
 
 func drawCards(deckId string, count int) ([]Card, error) {
+	println("drawCards")
 	responseChannel := make(chan DBResponse)
 	dbRequestChannel <- DBRequest{
 		QueryType:  "drawCards",
 		Parameters: []interface{}{deckId, count},
 		Response:   responseChannel,
 	}
+	println("drawCards")
 
 	response := <-responseChannel
 	return response.Result.([]Card), response.Err

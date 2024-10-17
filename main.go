@@ -42,13 +42,13 @@ func deckIdHandler(w http.ResponseWriter, r *http.Request) {
 
 	switch parts[2] {
 	case "add":
-		addHandler(w, r) //TODO
+		addHandler(w, r)
 	case "draw":
-		drawHandler(w, r) //TODO
+		drawHandler(w, r)
 	case "shuffle":
-		shuffleHandler(w, r) //TODO
+		shuffleHandler(w, r)
 	case "show":
-		showHandler(w, r) //TODO
+		showHandler(w, r)
 	default:
 		http.Error(w, "Invalid request", http.StatusBadRequest)
 	}
