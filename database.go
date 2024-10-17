@@ -228,14 +228,12 @@ func _drawCards(deckId string, count int) ([]Card, error) {
 }
 
 func drawCards(deckId string, count int) ([]Card, error) {
-	println("drawCards")
 	responseChannel := make(chan DBResponse)
 	dbRequestChannel <- DBRequest{
 		QueryType:  "drawCards",
 		Parameters: []interface{}{deckId, count},
 		Response:   responseChannel,
 	}
-	println("drawCards")
 
 	response := <-responseChannel
 	return response.Result.([]Card), response.Err

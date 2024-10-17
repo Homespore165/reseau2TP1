@@ -32,7 +32,7 @@ func (c Card) MarshalJSON() ([]byte, error) {
 	}
 
 	code := fmt.Sprintf("%s%s", rankMap[c.Rank], suitMap[c.Suit])
-	image := fmt.Sprintf("/static/%s.png", code)
+	image := fmt.Sprintf("/static/%s.svg", code)
 
 	rankValue := fmt.Sprintf("%d", c.Rank)
 	if mappedRank, found := rankMap[c.Rank]; found {
