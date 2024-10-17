@@ -240,6 +240,8 @@ func deckNewHandler(w http.ResponseWriter, r *http.Request) {
 			default:
 				http.Error(w, "Invalid request", http.StatusBadRequest)
 			}
+		} else if parts[3] == "jokers" {
+			includeJokers = true
 		}
 		deckId := createNewDeck(nbrPack, includeJokers)
 		jsonOutputDeck(w, deckId)
