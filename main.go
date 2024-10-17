@@ -217,7 +217,7 @@ func parseCardCode(cardCode string) (Card, error) {
 	}
 
 	code := rankStr + strconv.Itoa(suit)
-	image := fmt.Sprintf("/static/%s.png", cardCode)
+	image := fmt.Sprintf("/static/%s.svg", cardCode)
 	return Card{Rank: rank, Suit: suit, Code: code, Image: image}, nil
 }
 
@@ -240,8 +240,6 @@ func deckNewHandler(w http.ResponseWriter, r *http.Request) {
 			default:
 				http.Error(w, "Invalid request", http.StatusBadRequest)
 			}
-		} else if parts[3] == "jokers" {
-			includeJokers = true
 		}
 		deckId := createNewDeck(nbrPack, includeJokers)
 		jsonOutputDeck(w, deckId)

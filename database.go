@@ -78,7 +78,6 @@ func DbManager() {
 		case "comingCards":
 			cards, err := _comingCards(req.Parameters[0].(string), req.Parameters[1].(int))
 			response = DBResponse{Result: cards, Err: err}
-
 		default:
 			response = DBResponse{Err: fmt.Errorf("unknown query type")}
 		}
@@ -245,7 +244,7 @@ func drawCards(deckId string, count int) ([]Card, error) {
 func _shuffleDeck(deckId string) error {
 	query := "UPDATE cards SET position = RANDOM() WHERE deck_id = ? AND drawnDate IS NULL"
 	_, err := db.db.Exec(query, deckId)
-	for positionsCollide(deckId) {
+	for _positionsCollide(deckId) {
 		_, err = db.db.Exec(query, deckId)
 	}
 	return err
